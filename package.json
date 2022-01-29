@@ -1,0 +1,17 @@
+{
+  "name": "Act17",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "oliyadbeyene",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^7.0.0"
+  },
+  "scripts": {
+    "start": "concurrently \"yarn start-client\" \"yarn start-server\"",
+    "dev": "concurrently \"yarn start-client\" \"yarn start-server\"",
+    "start-client": "cd berea-client && yarn start",
+    "start-server": "cd server-berea && yarn start",
+    "start-dev": "cd server-berea && yarn dev"
+  }
+}

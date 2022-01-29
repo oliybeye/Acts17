@@ -1,0 +1,11 @@
+schema: '**/*.graphql'
+documents: '../berea-client/src/**/*.tsx'
+generates:
+  ../berea-client/src/graphql.ts:
+    - typescript
+    - typescript-operations
+    - typescript-react-apollo
+  ../server-berea/models/graphql.ts:
+    - typescript
+    - typescript-resolvers
+    - typescript-typedefs

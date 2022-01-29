@@ -1,0 +1,25 @@
+type Query {
+    news: [News]
+    newsSources: [Source]
+}
+
+type News {
+    id: ID
+    date: String
+    newsTitle: String
+    source: String
+    sourceSite: String
+    newsUrl: String
+}
+
+type Source {
+    name: String
+    site: String
+    credibility: Credibility
+    owner: String
+}
+
+type Credibility {
+    clickBaiting: Int
+    fundingSource: String
+}

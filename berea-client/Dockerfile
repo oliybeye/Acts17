@@ -1,10 +1,15 @@
 FROM node:latest
+
 WORKDIR /app
 
-COPY package.json ./
 COPY . .
 
 RUN yarn install
 
+RUN yarn build:prod
+
+RUN npm install -g serve
+
 EXPOSE 3000
-CMD [ "yarn", "start" ]
+
+ENTRYPOINT ["serve", "build"]

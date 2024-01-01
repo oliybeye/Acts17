@@ -1,25 +1,94 @@
-type Query {
-    news: [News]
-    newsSources: [Source]
+input NewsQueryInput {
+    today: Boolean
+    page: Int
 }
 
+input IncrementLikeInput {
+    id: String!
+    userId: String
+    """
+    metadata, the news organization, or comments
+    """
+    type: String!
+    likeCount: Int!
+}
+
+input IncrementDislikeInput {
+    id: String!
+    userId: String
+    """
+    metadata, the news organization, or comments
+    """
+    type: String!
+    dislikeCount: Int!
+}
+
+input CommentMutationInput {
+    id: String
+    userId: String
+    comment: String
+}
+
+input CommentsQueryInput {
+    id: ID
+}
+
+"""
+An event that occurred that's been reported on
+"""
 type News {
     id: ID
     date: String
-    newsTitle: String
-    source: String
-    sourceSite: String
-    newsUrl: String
+    title: String
+    author: [Author]
+    url: String
+    platform: Platform
+    imgUrl: String
+    comment: String
+    like: Int
+    dislike: Int
 }
 
-type Source {
+type Author {
+    first: String
+    middle: String
+    last: String
+}
+
+"""
+Platform is an organization that reports or comments on news
+"""
+type Platform {
     name: String
     site: String
-    credibility: Credibility
     owner: String
+    political: Political
+    clickBaitingScore: Int
 }
 
-type Credibility {
-    clickBaiting: Int
-    fundingSource: String
+"""
+A Platform political view
+"""
+type Political {
+    """
+    The platform's support of one or two political domain 
+    """
+    leaningSide: String
+
+    """
+    The platforms's top donors publicly known
+    """
+    topDonors: [String]
+
+    """
+    Most frequent issue discussed on the platform 
+    """
+    topIssues: [String]
+}
+
+type Comment {
+    id: ID!
+    userId: String!
+    comment: String!
+    timeStamp: String!
 }

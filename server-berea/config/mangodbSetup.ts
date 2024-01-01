@@ -1,8 +1,6 @@
 import { MongoClient } from "mongodb";
 
-const hostName = 'localhost';
-const port = 27017;
-const url = `mongodb://${hostName}:${port}`;
+const DB_CONNECTION_URL = process.env.DB_CONNECTION_URL ?? "mongodb://localhost:27017";
 
-const client = new MongoClient(url);
+const client = new MongoClient(DB_CONNECTION_URL);
 export default client;

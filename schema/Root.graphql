@@ -1,0 +1,13 @@
+type Query {
+    news(input: NewsQueryInput!): [News]
+    sources: [Platform!]
+    comments(input: CommentsQueryInput!): [Comment!]
+    county(name: String): County
+    stateCounties: [String!]!
+}
+
+type Mutation {
+    comment(input: CommentMutationInput!): Int @async
+    incrementLike(input: IncrementLikeInput!): Int @async
+    incrementDislike(input: IncrementDislikeInput!): Int @async
+}

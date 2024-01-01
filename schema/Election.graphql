@@ -1,0 +1,49 @@
+type Candidate {
+    id: String!
+    firstName: String!
+    middleName: String
+    lastName: String
+    county: String
+    districtType: String
+    district: String
+    race: String
+    termType: String
+    termLength: String
+    mailingAddress: String
+    email: String
+    phone: String
+    filingDate: String
+    partyPreference: String
+    status: String
+    electionStatus: String
+    url: String
+    img: String
+    statement: String
+}
+
+type Race {
+    id: String!
+    position: String!
+    termType: String
+    termLength: String
+    districtType: String!
+    district: String!
+    candidates: [Candidate!]
+}
+
+type District {
+    type: String!
+    districtType: String!
+    races: [Race!]!
+}
+
+type DistrictType {
+    type: String!
+    districts: [District!]!
+}
+
+type County {
+    id: String!
+    county: String!
+    districts: [DistrictType!]
+}

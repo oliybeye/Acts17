@@ -1,0 +1,34 @@
+name: Build and Push Docker Image
+
+on:
+  push:
+    branches:
+      - main # Trigger only on pushes to main
+  workflow_dispatch: # Allow manual runs if needed
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Log in to Docker Hub
+      uses: docker/login-action@v2
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }} # Your Docker Hub username
+        password: ${{ secrets.DOCKER_PASSWORD }} # Your Docker Hub password
+
+    - name: Extract version
+      run: |
+        VERSION=$(git describe --tags --abbrev=0)
+        echo "VERSION=$VERSION" >> $GITHUB_ENV
+    - name: Build Docker image
+      run: |
+        docker build -f berea-client/Dockerfile -t ${{ secrets.DOCKER_USERNAME }}/berea-client:$VERSION .
+        docker tag ${{ secrets.DOCKER_USERNAME }}/berea-client:$VERSION ${{ secrets.DOCKER_USERNAME }}/berea-client:latest
+    - name: Push Docker image
+      run: |
+        docker push ${{ secrets.DOCKER_USERNAME }}/berea-client:$VERSION
+        docker push ${{ secrets.DOCKER_USERNAME }}/berea-client:latest

@@ -7,6 +7,8 @@ WORKDIR /app
 # Copy only package.json and yarn.lock first (dependency caching)
 COPY package.json yarn.lock ./
 
+RUN ls -la /app
+
 # Install dependencies
 RUN yarn install --frozen-lockfile
 

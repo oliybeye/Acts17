@@ -10,7 +10,7 @@ COPY package.json yarn.lock ./
 RUN ls -la /app
 
 # Install dependencies
-RUN yarn install --frozen-lockfile
+RUN yarn install
 
 # Copy the rest of the files into the container
 COPY . .

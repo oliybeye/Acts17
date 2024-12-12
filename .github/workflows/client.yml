@@ -1,10 +1,16 @@
-name: Build and Push Docker Image
+name: Client Build and Push Docker Image
 
 on:
   push:
     branches:
       - main # Trigger only on pushes to main
   workflow_dispatch: # Allow manual runs if needed
+      inputs:
+        version:
+          description: 'Version to build'
+          required: true
+          default: 'latest'
+
 
 jobs:
   build-and-push:

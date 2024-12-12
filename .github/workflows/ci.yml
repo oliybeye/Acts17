@@ -20,10 +20,10 @@ jobs:
         username: ${{ secrets.DOCKER_USERNAME }} # Your Docker Hub username
         password: ${{ secrets.DOCKER_PASSWORD }} # Your Docker Hub password
 
-    - name: Extract version
+    - name: Get version
       run: |
-        VERSION=$(git describe --tags --abbrev=0)
-        echo "VERSION=$VERSION" >> $GITHUB_ENV
+        TAG=$(git describe --tags --abbrev=0 || echo "v0.0.0")
+        echo "VERSION=$TAG" >> $GITHUB_ENV
     - name: Build Docker image
       run: |
         docker build -f berea-client/Dockerfile -t ${{ secrets.DOCKER_USERNAME }}/berea-client:$VERSION .

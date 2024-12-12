@@ -4,11 +4,7 @@ FROM node:16-alpine
 # Set the working directory
 WORKDIR /app
 
-# Copy only package.json and yarn.lock first for dependency caching
-COPY package.json yarn.lock ./
-
-# Ensure the `yarn.lock` file exists (optional debug step)
-RUN test -f yarn.lock || echo "WARNING: yarn.lock not found!"
+COPY . .
 
 # Install dependencies
 RUN yarn install --frozen-lockfile

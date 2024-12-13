@@ -1,26 +1,10 @@
-# Use a specific Node.js version for consistency
-FROM node:16-alpine
-
-# Set the working directory
+FROM node:latest
 WORKDIR /app
 
-# Copy only package.json and yarn.lock first (dependency caching)
-COPY package.json yarn.lock ./
-
-# Install dependencies
-RUN yarn install
-
-# Copy the rest of the files into the container
+COPY package.json ./
 COPY . .
 
-# Build the production app
-RUN yarn build:prod
+RUN yarn install
 
-# Install a lightweight HTTP server to serve static files
-RUN npm install -g serve
-
-# Expose the app's port
 EXPOSE 3000
-
-# Serve the React app
-CMD ["serve", "-s", "build"]
+CMD [ "yarn", "start" ]

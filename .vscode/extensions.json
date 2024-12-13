@@ -1,0 +1,12 @@
+{
+    "recommendations": [
+      "esbenp.prettier-vscode",        // Prettier for code formatting
+      "dbaeumer.vscode-eslint",       // ESLint for linting JavaScript/TypeScript
+      "eamodio.gitlens",              // GitLens – Git supercharged
+      "vscode-icons-team.vscode-icons", // vscode-icons for better file icons
+      "ms-vscode.vscode-typescript-tslint-plugin", // TypeScript TSLint plugin
+      "streetsidesoftware.code-spell-checker", // Spell Checker for comments and docs
+      "editorconfig.editorconfig"     // EditorConfig support
+    ],
+  }
+  
